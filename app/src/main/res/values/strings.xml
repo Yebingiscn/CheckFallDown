@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">老人跌倒检测</string>
+    <!-- Strings related to login -->
+    <string name="prompt_phone">电话</string>
+    <string name="prompt_name">姓名</string>
+    <string name="prompt_password">密码</string>
+    <string name="action_sign_login">注册或登录</string>
+    <string name="action_sign_in_short">登录</string>
+    <string name="welcome">"欢迎 !"</string>
+    <string name="invalid_username">用户名不能为空</string>
+    <string name="invalid_password">密码长度必须大于5</string>
+    <string name="info">"使用本程序需要短信、网络权限，请在设置中予以同意"</string>
+    <string name="title_home">主页</string>
+    <string name="emergencyContact">紧急联系电话</string>
+    <string name="contactUser">联系老人</string>
+    <string name="repeatPwd">重复密码</string>
+    <string name="upgradePwd">修改密码</string>
+    <string name="title_activity_login">注册登录页面</string>
+</resources>
