@@ -4,6 +4,10 @@
     package="com.example.checkfalldown">
 
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 如果需要精确定位的话请加上此权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -16,16 +20,27 @@
         android:theme="@style/Theme.CheckFallDown"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity_changePwd"
+            android:name=".mapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".agreement.PrivateAgreement"
+            android:exported="false" />
+        <activity
+            android:name=".agreement.AboutUs"
+            android:exported="false"
+            android:label="@string/title_activity_abou_us"
+            android:theme="@style/Theme.CheckFallDown.NoActionBar" />
+        <activity
+            android:name=".activity.MainActivityChangeInfo"
             android:exported="false"
             android:label="@string/upgradePwd" />
         <activity
-            android:name=".MainActivity_view"
+            android:name=".activity.MainActivityView"
             android:exported="false"
             android:label="@string/title_home"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop" />
         <activity
-            android:name=".MainActivity_login"
+            android:name=".activity.MainActivityLogin"
             android:exported="true"
             android:launchMode="singleTask">
 
@@ -38,13 +53,17 @@
         </activity>
 
         <receiver
-            android:name=".smsReceiver"
+            android:name=".receiver.SmsReceiver"
             android:exported="true"
             android:permission="android.permission.BROADCAST_SMS">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="O97nM6TWGR8tPoNiccTsy2FdMoR3SuiB" />
     </application>
 
 </manifest>

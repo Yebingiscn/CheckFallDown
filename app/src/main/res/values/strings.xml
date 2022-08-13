@@ -16,4 +16,20 @@
     <string name="repeatPwd">重复密码</string>
     <string name="upgradePwd">修改密码</string>
     <string name="title_activity_login">注册登录页面</string>
+    <string name="title_activity_abou_us">AbouUs</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="aboutUs">关于我们</string>
+    <string name="content">内容</string>
+    <string name="privatePolicy">隐私政策</string>
+    <string name="privatePolicyContent">阅读本条内容即代表你知晓并且同意我们的服务</string>
+    <string name="oldManName">老人姓名</string>
+    <string name="contactNumber">联系方式</string>
+    <string name="addOldManInfo">增加老人信息</string>
 </resources>

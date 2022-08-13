@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity_view">
+    tools:context=".activity.MainActivityView">
 
     <Spinner
         android:id="@+id/spinner"
@@ -47,6 +47,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
+
     <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"
@@ -66,7 +67,7 @@
         android:id="@+id/button_contact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
+        android:layout_marginStart="60dp"
         android:background="@color/purple_200"
         android:text="@string/contactUser"
         android:textColor="@color/white"
