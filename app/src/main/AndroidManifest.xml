@@ -8,8 +8,11 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 如果需要精确定位的话请加上此权限 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
 
     <application
+        android:name=".map.MapInitialize"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -20,7 +23,7 @@
         android:theme="@style/Theme.CheckFallDown"
         tools:targetApi="31">
         <activity
-            android:name=".mapActivity"
+            android:name=".map.MapActivity"
             android:exported="false" />
         <activity
             android:name=".agreement.PrivateAgreement"
@@ -60,7 +63,6 @@
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
-
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="O97nM6TWGR8tPoNiccTsy2FdMoR3SuiB" />

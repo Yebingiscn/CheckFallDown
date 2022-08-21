@@ -12,12 +12,15 @@ public class SqlConnect extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {//创建数据库
+        System.out.println("1");
         sqLiteDatabase.execSQL("CREATE TABLE userinfo(name VARCHAR(20) PRIMARY KEY," +
                 "passWord VARCHAR(20))");
+        System.out.println("2");
         sqLiteDatabase.execSQL("CREATE TABLE smsinfo(" +
                 "sms_id Integer PRIMARY KEY AUTOINCREMENT," +
                 " sms_sender VARCHAR(20) , sms_body VARCHAR(50)" +
                 ",sms_time VARCHAR(50))");
+        System.out.println("3");
         sqLiteDatabase.execSQL("CREATE TABLE oldmaninfo(" +
                 "oldman_id Integer PRIMARY KEY AUTOINCREMENT," +
                 "oldman_name VARCHAR(20),  oldman_contact VARCHAR(20))");

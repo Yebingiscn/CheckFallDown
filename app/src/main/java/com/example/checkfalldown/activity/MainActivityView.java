@@ -17,14 +17,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.checkfalldown.R;
 import com.example.checkfalldown.dao.SqlDao;
+import com.example.checkfalldown.entity.OldManInfo;
 import com.example.checkfalldown.entity.SmsInfo;
 import com.example.checkfalldown.entity.UserInfo;
+import com.example.checkfalldown.map.MapActivity;
 
 import java.util.List;
 
 public class MainActivityView extends AppCompatActivity {
     //SmsReserve smsReserve;
-    private final String[] starArray = {"菜单", "修改密码"};
+    private final String[] starArray = {"菜单", "修改密码 & 绑定老人信息"};
     TextView textView;
     Button buttonEmergencyContact;
     Button buttonContactOld;
@@ -40,18 +42,11 @@ public class MainActivityView extends AppCompatActivity {
         buttonEmergencyContact = findViewById(R.id.button4);
         imageView = findViewById(R.id.imageView2);
         buttonContactOld = findViewById(R.id.button_contact);
+        Button showMap = findViewById(R.id.button_showMap);
 
-
-        buttonEmergencyContact.setOnClickListener(view -> {//紧急联系按钮
-            Uri uri = Uri.parse("tel:120");
-            Intent intentToContactEmergency = new Intent(Intent.ACTION_DIAL, uri);
-            startActivity(intentToContactEmergency);
-
-        });
-        buttonContactOld.setOnClickListener(view -> {//紧急联系老人按钮
-            Toast.makeText(this, "请先设置老人联系电话", Toast.LENGTH_SHORT).show();
-        });
-
+        showMap.setOnClickListener(this::showMap);
+        buttonEmergencyContact.setOnClickListener(this::EmergencyContact);
+        buttonContactOld.setOnClickListener(this::ContactOld);
 
         Intent intent = getIntent();//获取intent
         String sms_sender = intent.getStringExtra("sms_sender");
@@ -73,12 +68,42 @@ public class MainActivityView extends AppCompatActivity {
                 imageView.setBackgroundColor(R.color.green);
             } else {
                 SmsInfo smsInfo = smsInfos.get(0);
-                textView.setText(smsInfo.getSms_sender() + ":" + smsInfo.getSms_body() + "\n" + smsInfo.getSms_time());
+                textView.setText(smsInfo.getSms_sender() +
+                        ":" + smsInfo.getSms_body() + "\n" + smsInfo.getSms_time());
                 imageView.setImageDrawable(getDrawable(R.drawable.resource__sos));
                 imageView.setBackgroundColor(R.color.red);
             }
         } else {
             textView.setText(sms_sender + ":" + sms_body + "\n" + sms_time);
+        }
+    }
+
+    public void EmergencyContact(View view) {
+        Uri uri = Uri.parse("tel:120");
+        Intent intentToContactEmergency = new Intent(Intent.ACTION_DIAL, uri);
+        startActivity(intentToContactEmergency);
+    }
+
+    public void showMap(View view) {
+        Intent showMap = new Intent(MainActivityView.this, MapActivity.class);
+        startActivity(showMap);
+    }
+
+    public void ContactOld(View view) {
+        SqlDao sqlDao = new SqlDao(MainActivityView.this);
+        List<OldManInfo> oldManInfos = sqlDao.queryOldManInfo();
+        System.out.println(oldManInfos.toString());
+        int i = 0;
+        if (i < oldManInfos.size()) {
+            System.out.println(oldManInfos.get(oldManInfos.size() - 1));
+            OldManInfo oldManInfo = oldManInfos.get(oldManInfos.size() - 1);
+            System.out.println(oldManInfo.getOldManContact());
+            Uri uri = Uri.parse("tel:" + oldManInfo.getOldManContact());
+            Intent intentToContactEmergency = new Intent(Intent.ACTION_DIAL, uri);
+            startActivity(intentToContactEmergency);
+        } else {
+            Toast.makeText
+                    (MainActivityView.this, "请先添加老人信息", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -120,7 +145,6 @@ public class MainActivityView extends AppCompatActivity {
 
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            //Toast.makeText(MainActivity_view.this,"您选择的是："+starArray[i],Toast.LENGTH_SHORT).show();
             if (i == 1) {
                 Intent intent =
                         new Intent(MainActivityView.this, MainActivityChangeInfo.class);

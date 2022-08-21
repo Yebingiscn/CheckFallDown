@@ -17,6 +17,8 @@ public class OldManInfo {
     }
 
     public OldManInfo(String oldManName, String oldManContact) {
+        this.oldManName = oldManName;
+        this.oldManContact = oldManContact;
     }
 
     public String getOldManName() {

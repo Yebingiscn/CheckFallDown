@@ -32,4 +32,5 @@
     <string name="oldManName">老人姓名</string>
     <string name="contactNumber">联系方式</string>
     <string name="addOldManInfo">增加老人信息</string>
+    <string name="showOnMap">在地图中显示</string>
 </resources>

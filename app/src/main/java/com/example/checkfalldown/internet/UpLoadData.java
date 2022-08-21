@@ -9,7 +9,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
-public class upLoadData {
+public class UpLoadData {
     public void sendDataToServer() {
         new Thread(() -> {
             OldManInfo oldManInfo = new OldManInfo();

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.checkfalldown.R;
 import com.example.checkfalldown.dao.SqlDao;
+import com.example.checkfalldown.entity.OldManInfo;
 import com.example.checkfalldown.entity.UserInfo;
 
 public class MainActivityChangeInfo extends AppCompatActivity {
@@ -48,6 +49,28 @@ public class MainActivityChangeInfo extends AppCompatActivity {
             userName.setText(userInfo.getUserName());
             //initSpinner();
             isSubmitNewPwd.setOnClickListener(this::changePwdOnClick);
+            isSubmitOldManInfo.setOnClickListener(this::addInfoOnClick);
+        }
+    }
+
+    public void addInfoOnClick(View view) {
+        String oldName = EditTextOldName.getText().toString().trim();
+        System.out.println(oldName);
+        String oldContact = EditTextOldContact.getText().toString().trim();
+        System.out.println(oldContact);
+        OldManInfo oldManInfo = new OldManInfo(oldName, oldContact);
+        System.out.println(oldManInfo.getOldManName() + oldManInfo.getOldManContact());
+        if (oldName.length() != 0 && oldContact.length() != 0) {
+            SqlDao sqlDao = new SqlDao(MainActivityChangeInfo.this);
+            boolean isAddData = sqlDao.insertOldManInfo(oldManInfo);
+            if (isAddData) {
+                Toast.makeText(MainActivityChangeInfo.this,
+                        "增加成功" + "老人信息为" + oldName + "老人联系方式为" + oldContact,
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(MainActivityChangeInfo.this,
+                        "增加失败", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -57,8 +80,8 @@ public class MainActivityChangeInfo extends AppCompatActivity {
         if (isEqual(newPwd, newPwdRepeat)) {
             userInfo.setUserPwd(newPwd);
             SqlDao sqlDao = new SqlDao(MainActivityChangeInfo.this);
-            boolean isupDate = sqlDao.updateUserInfo(userInfo);
-            if (isupDate) {
+            boolean isUpData = sqlDao.updateUserInfo(userInfo);
+            if (isUpData) {
                 Toast.makeText(MainActivityChangeInfo.this,
                         "修改成功", Toast.LENGTH_SHORT).show();
             } else {
@@ -77,6 +100,8 @@ public class MainActivityChangeInfo extends AppCompatActivity {
             return false;
         } else if (!newPwd.equals(newPwdRepeat)) {
             return false;
-        } else return (newPwd.length() <= 20 && newPwdRepeat.length() <= 20);
+        } else {
+            return newPwd.length() <= 20;
+        }
     }
 }

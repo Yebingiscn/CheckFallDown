@@ -124,10 +124,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/oldManNameTv"
-            android:layout_alignParentStart="true"
             android:layout_alignBaseline="@+id/oldManContactEv"
+            android:layout_alignParentStart="true"
             android:layout_marginStart="40dp"
-            android:text="@string/contactNumber"/>
+            android:text="@string/contactNumber" />
 
         <EditText
             android:id="@+id/oldManContactEv"
@@ -146,8 +146,8 @@
             android:id="@+id/submitOldManInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:layout_below="@+id/oldManContactEv"
+            android:layout_centerInParent="true"
             android:layout_marginStart="4dp"
             android:background="@color/blue"
             android:text="@string/addOldManInfo"

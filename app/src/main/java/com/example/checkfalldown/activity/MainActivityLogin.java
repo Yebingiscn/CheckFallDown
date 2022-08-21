@@ -104,8 +104,9 @@ public class MainActivityLogin extends AppCompatActivity {
         userinfo.add(userName);
         userinfo.add(userPwd);
         SqlDao sqlDao = new SqlDao(MainActivityLogin.this);
-        boolean isRegeister = sqlDao.insertUserInfo(userInfo);
-        if (isRegeister) {
+        System.out.println(sqlDao.hashCode());
+        boolean isRegister = sqlDao.insertUserInfo(userInfo);
+        if (isRegister) {
             //数据库插入成功，是第一次注册
             successLogin();
         } else {

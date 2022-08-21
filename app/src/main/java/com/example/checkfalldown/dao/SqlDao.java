@@ -49,8 +49,9 @@ public class SqlDao {
     }
 
     public boolean insertOldManInfo(OldManInfo oldManInfo) {
-        db = sqlConnect.getReadableDatabase();
+        db = sqlConnect.getWritableDatabase();
         contentValues = new ContentValues();
+        System.out.println(oldManInfo.getOldManContact() + oldManInfo.getOldManName());
         contentValues.put("oldman_name", oldManInfo.getOldManName());
         contentValues.put("oldman_contact", oldManInfo.getOldManContact());
         long id = db.insert("oldmaninfo", null, contentValues);
@@ -69,6 +70,7 @@ public class SqlDao {
                     cursor.getString(cursor.getColumnIndex("oldman_name"));
             @SuppressLint("Range") String oldManContact =
                     cursor.getString(cursor.getColumnIndex("oldman_contact"));
+            System.out.println(oldManName + oldManContact);
             list.add(new OldManInfo(oldManName, oldManContact));
         }
         return list;
